@@ -1,0 +1,47 @@
+=======================================================
+  Infomap v0.20.0 starts at [2020-02-19 17:10:01]
+  -> Input network: data/net_202001_11.net
+  -> Output path:   mapequation/
+  -> Configuration: input-format = pajek
+                    flow-network
+                    two-level
+                    directed
+  -> Use directed flow and 1st order Markov dynamics with unrecorded teleportation to links
+=======================================================
+(OpenMP 201511 detected, trying to parallelize the recursive part on 8 threads...)
+Parsing directed network from file 'data/net_202001_11.net'...  (Warning: All node weights zero, changing to one) done!
+ ==> 303 nodes and 27104 links (with total weight 6.29034e+07).
+Calculating global flow... 
+  -> Using unrecorded teleportation to links. 
+  -> PageRank calculation done in 112 iterations.
+Printing flow network to mapequation/net_202001_11.flow... done!
+Calculating one-level codelength... done!
+  -> One-level codelength: 7.541748709
+Calculating entropy rate... done!
+  -> Entropy rate: 4.358256567
+Initiating done in 0.152126s
+
+Attempt 1/1 at [2020-02-19 17:10:01]
+Initiated to codelength 7.54175 + 1.99898 = 9.540733246 in 303 modules.
+Two-level compression: 18% 0.078% 5.3% to 11 modules with codelength 6.334022237
+
+Building output tree... writing .tree... done!
+
+
+Finished clustering 'net_202001_11' in 1 trial with:
+Iteration                 Seconds          Modules       Perplexity         maxDepth    weightedDepth       Codelength 
+1                     0.074095000               11      7.063681856                2      2.000000000      6.334022237 *
+
+
+Best end modular solution in 2 levels:
+Per level number of modules:         [         11,           0] (sum: 11)
+Per level number of leaf nodes:      [          0,         303] (sum: 303)
+Per level average child degree:      [         11,     27.5455] (average: 26.9658)
+Per level codelength for modules:    [0.727727896, 0.000000000] (sum: 0.727727896)
+Per level codelength for leaf nodes: [0.000000000, 5.606294341] (sum: 5.606294341)
+Per level codelength total:          [0.727727896, 5.606294341] (sum: 6.334022237)
+
+===================================================
+  Infomap ends at [2020-02-19 17:10:01]
+  Elapsed time: 0s (0.232486000s)
+===================================================
