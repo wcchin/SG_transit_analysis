@@ -1,5 +1,5 @@
 =======================================================
-  Infomap v0.20.0 starts at [2020-02-20 00:47:17]
+  Infomap v0.20.0 starts at [2020-02-26 16:19:15]
   -> Input network: data/net_202001_weekday.net
   -> Output path:   mapequation/
   -> Configuration: input-format = pajek
@@ -10,7 +10,7 @@
 =======================================================
 (OpenMP 201511 detected, trying to parallelize the recursive part on 8 threads...)
 Parsing directed network from file 'data/net_202001_weekday.net'...  (Warning: All node weights zero, changing to one) done!
- ==> 303 nodes and 30043 links (with total weight 1.49061e+09).
+ ==> 303 nodes and 30043 links (with total weight 6.48091e+07).
 Calculating global flow... 
   -> Using unrecorded teleportation to links. 
   -> PageRank calculation done in 114 iterations.
@@ -19,9 +19,9 @@ Calculating one-level codelength... done!
   -> One-level codelength: 7.591387951
 Calculating entropy rate... done!
   -> Entropy rate: 4.307422154
-Initiating done in 0.307578s
+Initiating done in 0.29546s
 
-Attempt 1/1 at [2020-02-20 00:47:17]
+Attempt 1/1 at [2020-02-26 16:19:15]
 Initiated to codelength 7.59139 + 1.99975 = 9.591134059 in 303 modules.
 Two-level compression: 18% 0.27% 5.3% to 10 modules with codelength 6.382611505
 
@@ -30,7 +30,7 @@ Building output tree... writing .tree... done!
 
 Finished clustering 'net_202001_weekday' in 1 trial with:
 Iteration                 Seconds          Modules       Perplexity         maxDepth    weightedDepth       Codelength 
-1                     0.064282000               10      7.244338072                2      2.000000000      6.382611505 *
+1                     0.057844000               10      7.244338072                2      2.000000000      6.382611505 *
 
 
 Best end modular solution in 2 levels:
@@ -42,6 +42,6 @@ Per level codelength for leaf nodes: [0.000000000, 5.640553555] (sum: 5.64055355
 Per level codelength total:          [0.742057951, 5.640553555] (sum: 6.382611505)
 
 ===================================================
-  Infomap ends at [2020-02-20 00:47:17]
-  Elapsed time: 0s (0.373727000s)
+  Infomap ends at [2020-02-26 16:19:15]
+  Elapsed time: 0s (0.375688000s)
 ===================================================
