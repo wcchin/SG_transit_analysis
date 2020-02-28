@@ -1,6 +1,12 @@
 ## Identifying spatial super-spreader and super-receiver in commuting network of Singapore. 
 
-*current status*: report
+## Highlights
+
+1. The aim of this study is to identify spatial super-spreader and super-receiver from commuting network (public transport flow).
+2. Spatial super spreader is the subzones that have stronger ability to spread the disease to the rest of the country in a short time period, i.e. the potential source of outbreak.
+3. Spatial super receiver is the subzones that are easily get influences by other places, i.e. the vulnerable places. 
+4. Technically, the spreader/receiver index are the integration of the density (local degree centralities),  and the diversity of the outgoing/incoming links, in terms of varying zones and coreness (e.g. city cores and peripheries). 
+5. In discussion, the results could be used to suggest the spatially allocation of medical resources and to provide advises for disease control. 
 
 ## Introduction
 
@@ -38,7 +44,7 @@ As the raw data records the flow between bus stops or train stations, we spatial
 
 ### Calculation framework
 
-the framework
+The calculation flow of the spreader and receiver indexes is shown in Figure 2. The first part is to aggregate the bus and train OD flow data to subzones as aforementioned. Then, we got the main data for the calculation, i.e. two weighted and directed networks: weekday and weekend flow network. These networks were used to calculate three network characteristic measurements, including degree centralities (step 1), community detection (step 2), and k-shell decomposition (step 3), which were described in the following subsections. The degree centralities were used as the local out and in flow densities, whereas the community detection and k-shell decomposition results were used to calculate the neighborhood diversities, including zone-entropy and coreness-entropy. Finally, the three network characteristics were used to calculate the spreader index and receiver index. 
 
 <img src="figures/fig2-calculation_flowchart.png" style="zoom:90%;" />
 
@@ -46,11 +52,77 @@ Figure 2. The calculation flow chart of the spreader and receiver index.
 
 #### Step 1: Degree centralities
 
+
+
+
+
+
+
 #### Step 2: Zone-entropy
+
+
+
+mapequation
+
+
+
+need to change the ln(N) part to the global number of community not neighborhood
+
+zone-entropy
+$$
+H^{Zone}_{Neigh}(i) = \frac{-\sum_{Z\in Zone(Neigh)} P_i(Z) ln P_i(Z)}{ln |Zone(Neigh)|}
+\\
+Neigh = \{ OutNeigh, InNeigh \}
+\\
+P_i(Z) =
+    \begin{cases}
+      \frac{\sum_{j\in Z \cap Neigh(i)} w(i,j)}{\sum_{k\in Neigh(i)}w(i,k)}, & \text{if}\ Neigh=OutNeigh \\
+      \frac{\sum_{j\in Z \cap Neigh(i)} w(j,i)}{\sum_{k\in Neigh(i)}w(k,i)}, & \text{if}\ Neigh=InNeigh
+    \end{cases}
+$$
+
+
+
 
 #### Step 3: Coreness-entropy
 
+K-shell decomposition is a method to label the coreness of nodes in a network based on the connectivity structure. The weighted k-shell decomposition (Garas et al. 2012) is a extended version that consider both the number of links (degree) and the weights of links (weighted degree). 
+
+1. run weighted K-shell decomposition, use the in/out-degree and weighted in/out-degree (from step 1) to calculate the in/out-k-shell values of each subzone. 
+2. use the in/out-k-shell values separately, group the subzones into two parts (coreness): high k-shell (as in/out-core) and low k-shell (as in/out-non-core).
+3. For each node (i), check its incoming/outgoing neighbors' coreness, calculate the normalized entropy by using the edge weight (flow) as the probability according to the category of coreness (is the neighbor a core or non-core). Calculation equation is shown as below:
+
+
+$$
+H^{Core}_{Neigh}(i) = \frac{-\sum_{C\in Core(Neigh)} P_i(C) ln P_i(C)}{ln |Core(Neigh)|}
+\\
+Neigh = \{ OutNeigh, InNeigh \}
+\\
+P_i(C) =
+    \begin{cases}
+      \frac{\sum_{j\in C \cap Neigh(i)} w(i,j)}{\sum_{k\in Neigh(i)}w(i,k)}, & \text{if}\ Neigh=OutNeigh \\
+      \frac{\sum_{j\in C \cap Neigh(i)} w(j,i)}{\sum_{k\in Neigh(i)}w(k,i)}, & \text{if}\ Neigh=InNeigh
+    \end{cases}
+$$
+
+
+
+
+
+
 #### Step 4: Spreader & receiver index
+
+
+$$
+SpreaderIndex(i) = \sqrt[3]{OutDegree(i) \times H^{Zone}_{OutNeigh}(i) \times H^{Core}_{OutNeigh}(i)}
+$$
+
+$$
+ReceiverIndex(i) = \sqrt[3]{InDegree(i) \times H^{Zone}_{InNeigh}(i) \times H^{Core}_{InNeigh}(i)}
+$$
+
+
+
 
 
 
