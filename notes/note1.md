@@ -6,7 +6,8 @@
 2. Spatial super spreader is the subzones that have stronger ability to spread the disease to the rest of the country in a short time period, i.e. the potential source of outbreak.
 3. Spatial super receiver is the subzones that are easily get influences by other places, i.e. the vulnerable places. 
 4. Technically, the spreader/receiver index are the integration of the density (local degree centralities),  and the diversity of the outgoing/incoming links, in terms of varying zones and coreness (e.g. city cores and peripheries). 
-5. In discussion, the results could be used to suggest the spatially allocation of medical resources and to provide advises for disease control. 
+5. The deliverable results are the distribution of the super-spreader and super-receiver subzones. 
+6. In discussion, the results could be used to suggest the spatially allocation of medical resources and to provide advises for disease control. 
 
 ## Introduction
 
@@ -16,7 +17,7 @@ But, before reaching the city/country lock-down condition, the peoples are still
 
 The commuting flow of a city is a network representation of people flow in a city. A commuting flow network connect two places with a number indicating the number of people move from the origin to the destination. It could be used to capture the flow of people between places, and also the location where the interaction of people occurs. Therefore, the commuting flow network could be used to identify the places that are more dangerous in terms of spreading disease, namely super-spreader; and the vulnerable places that is easier to get infected, namely super-receiver. 
 
-The aim of this study is to identify the super-spreader and super-receiver in a commuting network. A spatial super-spreader is a location where a lot of people are moving from, and those people are moving to different places; a spatial super-receiver is the destination of a large number of commuters, who come from different places. In other words, there is two keys to identify super-spreader and super-receiver, which is local density and neighborhood diversity. The local densities  of a location are the number of people leaving from or reaching to the location. The neighborhood diversities contains two type of diversity, one of which is the diversity of zones, i.e. are the people come from different parts of the country; another is the diversity of coreness, i.e. are the people come from different types of the country in terms of core or peripheral areas. 
+The aim of this study is to identify the super-spreader and super-receiver in a commuting network. A spatial super-spreader is a location where a lot of people are moving from, and those people are moving to different places; a spatial super-receiver is the destination of a large number of commuters, who come from different places. In other words, there is two keys to identify super-spreader and super-receiver, which is local density and neighborhood diversity (REF). The local densities  of a location are the number of people leaving from or reaching to the location. The neighborhood diversities contains two type of diversity, one of which is the diversity of zones, i.e. are the people come from different parts of the country; another is the diversity of coreness, i.e. are the people come from different types of the country in terms of core or peripheral areas. 
 
 In this study, we present the analysis of Singapore public transport flow network, and identify the spatial super-spreaders and super-receivers using the spreader and receiver indexes, which were calculated based on the local densities and neighborhood diversities measurements. The population flow pattern may be different for weekday and weekend. Thus, the flow data were separated into two parts, weekday and weekend, to show the differences of super-spreaders and super receivers during weekdays and weekends. 
 
@@ -52,25 +53,22 @@ Figure 2. The calculation flow chart of the spreader and receiver index.
 
 #### Step 1: Degree centralities
 
+The degree centralities we used in this study include the non-weighted and weighted for both in and out degrees. The non-weighted and weighted versions of degree centralities present different concepts in network characteristics. The non-weighted in-degree and out-degree are the number of link that is pointed to and from a subzone, respectively. These non-weighted degree centralities measure the number of relationships a subzone has. The weighted in-degree and out-degree are the summation of incoming flows and the summation of outgoing flows of a subzone, respectively. This weighted version of degree centralities indicate the total strength of a node in terms of gathering flows or spreading flows, but it do not differentiate the number of links. 
 
-
-
+In this study, the weighted degree centralities were used to represent the density of nodes for the calculation of spreader and receiver indexes. The weighted degree centralities were scaled to the range between 0 and 1 for the calculation. On the other hand, both non-weighted and weighted degree centralities were used in the weighted k-shell decomposition analysis in step 3. 
 
 
 
 #### Step 2: Zone-entropy
 
+MapEquation is used to identify the communities in the flow networks. MapEquation is an algorithm that consider the direction and weight of edges to identify the strongly connected nodes in a directed and weighted network. Different from modularity-based community detection methods, MapEquation's calculation concept emphasize the strength of flows in community, i.e. more flows were moving within a community than between communities (flows cycling within communities); it capture the effect of direction in this way that it ensures a large amount of flows is kept within community. The MapEquation communities are used as the zones that contains a strong commuting flows cycle, and are used to calculate the zone-entropy. The steps are:
 
+1. Run MapEquation to identify the zone (community) of each subzone. 
+2. For each node, check its incoming/outgoing neighbors' zone, calculate the normalized entropy by using the edge weight (flow) as the probability according to the category of zone (the neighbors' zone id). The entropy is normalized using the total number of zones in the network, so it could be compare between each node. The zone-entropy value range is between 0 and 1. Calculation equation is shown as below:
 
-mapequation
-
-
-
-need to change the ln(N) part to the global number of community not neighborhood
-
-zone-entropy
+Equation 1:
 $$
-H^{Zone}_{Neigh}(i) = \frac{-\sum_{Z\in Zone(Neigh)} P_i(Z) ln P_i(Z)}{ln |Zone(Neigh)|}
+H^{Zone}_{Neigh}(i) = \frac{-\sum_{Z\in Zone(Neigh)} P_i(Z) ln P_i(Z)}{ln |Zone(All)|}
 \\
 Neigh = \{ OutNeigh, InNeigh \}
 \\
@@ -86,15 +84,16 @@ $$
 
 #### Step 3: Coreness-entropy
 
-K-shell decomposition is a method to label the coreness of nodes in a network based on the connectivity structure. The weighted k-shell decomposition (Garas et al. 2012) is a extended version that consider both the number of links (degree) and the weights of links (weighted degree). 
+K-shell decomposition is a method to label the coreness (k-shell levels) of nodes in a network based on the connectivity structure. The weighted k-shell decomposition (Garas et al. 2012) is an extended version that consider both the number of links (degree) and the weights of links (weighted degree with normalization as suggested in Garas et al. 2012) while labeling coreness. The coreness are separated into two levels: core and non-core, using the median as the cut point. And the two levels were used to calculate the coreness-entropy. 
 
 1. run weighted K-shell decomposition, use the in/out-degree and weighted in/out-degree (from step 1) to calculate the in/out-k-shell values of each subzone. 
-2. use the in/out-k-shell values separately, group the subzones into two parts (coreness): high k-shell (as in/out-core) and low k-shell (as in/out-non-core).
-3. For each node (i), check its incoming/outgoing neighbors' coreness, calculate the normalized entropy by using the edge weight (flow) as the probability according to the category of coreness (is the neighbor a core or non-core). Calculation equation is shown as below:
+2. use the in/out-k-shell values separately, group the subzones into two coreness levels: high k-shell (as in/out-core) and low k-shell (as in/out-non-core), cut by median value. 
+3. For each node (i), check its incoming/outgoing neighbors' coreness, calculate the normalized entropy by using the edge weight (flow) as the probability according to the levels of coreness (is the neighbor a core or non-core). The entropy is normalized using the total number of coreness levels (which is 2, i.e. core or non-core) in the network, so it could be compare between each node. The coreness-entropy value range is between 0 and 1. Calculation equation is shown as below:
 
+Equation 2: 
 
 $$
-H^{Core}_{Neigh}(i) = \frac{-\sum_{C\in Core(Neigh)} P_i(C) ln P_i(C)}{ln |Core(Neigh)|}
+H^{Core}_{Neigh}(i) = \frac{-\sum_{C\in Core(Neigh)} P_i(C) ln P_i(C)}{ln |Core(All)|}
 \\
 Neigh = \{ OutNeigh, InNeigh \}
 \\
@@ -107,18 +106,23 @@ $$
 
 
 
-
-
-
 #### Step 4: Spreader & receiver index
 
+The spreader index and receiver index calculation are the cube root of the multiplication of the three of the aforementioned network measurements. The spreader index (Equation 3) is calculated as the cube root of the multiplication of the local normalized weighted out-degree ($NWOutDegree(i)$), the zone-entropy of outgoing neighbors ($H^{Zone}_{OutNeigh}(i)$), and the out-coreness-entropy of the outgoing neighbors ($H^{Core}_{OutNeigh}(i)$). This equation indicates that if a node's spreader index is high, it means that it has a high volume of outgoing flows (high density), half of the flows were going to core area and half to non-core area, and these flows are equally divided into different zones (high out-neighbors' zone-entropy). In other words, a high spreader index subzone has a large number of travelers originated from there, and they are going to both core and periphery places, which are located in varying zones. Therefore, this kind of origins would have stronger ability to spread disease within a short time period. These density and diversity measurements are all in the range between zero and one, thus after the multiplication and cube root, the result would also in between zero and one.  
+
+Equation 3:
 
 $$
-SpreaderIndex(i) = \sqrt[3]{OutDegree(i) \times H^{Zone}_{OutNeigh}(i) \times H^{Core}_{OutNeigh}(i)}
+SpreaderIndex(i) = \sqrt[3]{NWOutDegree(i) \times H^{Zone}_{OutNeigh}(i) \times H^{Core}_{OutNeigh}(i)}
 $$
 
+
+
+The receiver index (Equation 4) is calculated as the cube root of the multiplication of the local normalized weighted in-degree ($NWInDegree(i)$), the zone-entropy of  incoming neighbors ($H^{Zone}_{InNeigh}(i)$), and the in-coreness-entropy of the incoming neighbors ($H^{Core}_{InNeigh}(i)$). A high receiver index indicates that the subzone has large incoming flows, half of the flows are coming from core area and half from non-core area, and these flows were equally coming from different zones.  In other words, this subzone is a destination for a large number of travelers, and they are coming from various zones and their origin of movements contain both core and periphery areas. Therefore, a high receiver index subzone is more vulnerable and sensitive in terms of easily get infected. The receiver index is also in between zero and one. 
+
+Equation 4: 
 $$
-ReceiverIndex(i) = \sqrt[3]{InDegree(i) \times H^{Zone}_{InNeigh}(i) \times H^{Core}_{InNeigh}(i)}
+ReceiverIndex(i) = \sqrt[3]{NWInDegree(i) \times H^{Zone}_{InNeigh}(i) \times H^{Core}_{InNeigh}(i)}
 $$
 
 
@@ -180,7 +184,7 @@ Figure 8. The map of the super-spreader and super receiver for: (a) weekday, (b)
 
 ## Discussions and conclusion
 
-*core contribution of this study*
+*main contribution of this study*
 
 This study used 
 
@@ -188,6 +192,7 @@ This study used
 
 1. This study covered only the public transportation commuters, specifically, only bus and train riderships were included. Other ways of transportation, including the private or hired automobiles (cars, motorcycles, shuttle buses or vans), and active transportation (by walking, bicycles, skateboards, scooters, etc.) were not included. 
 2. Cross-border flows were not included. Many workers in Singapore come from Malaysia and commute in a daily basis. There are some bus services connecting stations in Johor Bahru, Malaysia and various places in Singapore (Woodlands, Jurong East etc.). The in/out flows of these places in Singapore would be underestimated. 
+3. Some of the subzones have no bus stops and train stations currently. These places were ignored in this study as these places were only reachable using other types of transportation, and we do not have the data for privates automobiles and active transportation data. 
 
 
 
