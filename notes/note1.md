@@ -156,7 +156,7 @@ Figure 4. The detected communities for (a) weekday flow data and (b) weekend flo
 
 #### Part 3: Coreness
 
-
+The spatial distribution of core area are shown in Figure 5. The calculation of coreness were separated into two parts for each network, one of which used in-degree and weighted in-degree, and another used out-degree and weighted out-degree. So two sets of coreness results (outgoing core area and incoming core area) were computed for each network. Some areas were identified as core in both incoming and outgoing directions (subzones in red), and some were core for either incoming (in pink) or outgoing (in purple) but not both. Most of the cores were overlap between incoming and outgoing directions. In weekday result, the out only core area were concentrated at the Central Region, which was the main central business area of Singapore; whereas the in only core area were scattered at North, West and North East Regions. In weekend, the out only core area scattered at all regions, while the Central Area contained the most of these kind of core. The in only core area were also scattered as weekday result. 
 
 <img src="figures/fig5-kshell_result.png" style="zoom:50%;" />
 
@@ -165,6 +165,8 @@ Figure 5. The coreness of for (a) weekday flow data and (b) weekend flow data. R
 
 
 #### Part 4: Spreader & receiver index
+
+
 
 <img src="figures/fig6-density_and_diversity.png" style="zoom:50%;" />
 
