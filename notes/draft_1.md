@@ -1,4 +1,4 @@
-## Identifying spatial super-spreader and super-receiver in commuting network of Singapore. 
+## Identifying spatial super-spreader and super-receiver from commuting network in Singapore. 
 
 ## Highlights
 
@@ -29,7 +29,7 @@ The section contain three parts: (a) brief description of the study area, (b) th
 
 ### Study area
 
-This study focused on the Singapore commuting network flow in Singapore, using the subzone level spatial boundaries (from Master Plan 2014) as the analysis unit. The residential population density were shown in Figure 1. There were five regions (Central, West, North, North East, and East), 55 planning areas, and 323 subzones. Some of the subzones contain no residential population (white areas), which includes airports and airbases (e.g. Changi Airport at the East Region) and industrial parks or ports (e.g. Jurong Island and Bukom at the south of the West Region, and Simpang North and South at the North Region). Although these places contain zero residential population, they were the work places (destinations) of a lot of commuters. 
+This study focused on the Singapore commuting network flow in Singapore, using the subzone level spatial boundaries (from Master Plan 2014) as the analysis unit. The residential population density (from General Household Survey 2015) were shown in Figure 1. There were five regions (Central, West, North, North East, and East), 55 planning areas, and 323 subzones. Some of the subzones contain no residential population (white areas), which includes airports and airbases (e.g. Changi Airport at the East Region) and industrial parks or ports (e.g. Jurong Island and Bukom at the south of the West Region, and Simpang North and South at the North Region). Although these places contain zero residential population, they were the work places (destinations) of a lot of commuters. 
 
 <img src="figures/fig1-population_density_map.png" style="zoom:40%;" />
 
@@ -156,7 +156,7 @@ Figure 4. The detected communities for (a) weekday flow data and (b) weekend flo
 
 #### Part 3: Coreness
 
-The spatial distribution of core area are shown in Figure 5. The calculation of coreness were separated into two parts for each network, one of which used in-degree and weighted in-degree, and another used out-degree and weighted out-degree. So two sets of coreness results (outgoing core area and incoming core area) were computed for each network. Some areas were identified as core in both incoming and outgoing directions (subzones in red), and some were core for either incoming (in pink) or outgoing (in purple) but not both. Most of the cores were overlap between incoming and outgoing directions. In weekday result, the out only core area were concentrated at the Central Region, which was the main central business area of Singapore; whereas the in only core area were scattered at North, West and North East Regions. In weekend, the out only core area scattered at all regions, while the Central Area contained the most of these kind of core. The in only core area were also scattered as weekday result. 
+The spatial distribution of core area are shown in Figure 5. The calculation of coreness were separated into two parts for each network, one of which used in-degree and weighted in-degree, and another used out-degree and weighted out-degree. So two sets of coreness results (outgoing core area and incoming core area) were computed for each network. Some areas were identified as core in both incoming and outgoing directions (subzones in red), and some were core for either incoming (in pink) or outgoing (in purple) but not both. Most of the cores were overlap between incoming and outgoing directions. These areas were also overlapped with the high residential population density area, indicating that places where the people live would always have high incoming and outgoing flows thus becoming the core area of commuting. In weekday result, the out only core area were concentrated at the Central Region, which was the main central business area of Singapore; whereas the in only core area were scattered at North, West and North East Regions. While the Central Region contained the most of out only core in weekend result, the spatial distribution was relatively scattered through out all regions. The in only core area were also scattered as weekday result. 
 
 <img src="figures/fig5-kshell_result.png" style="zoom:50%;" />
 
@@ -164,15 +164,15 @@ Figure 5. The coreness of for (a) weekday flow data and (b) weekend flow data. R
 
 
 
-#### Part 4: Spreader & receiver index
+#### Part 4: Spreader & receiver indexes
 
-
+The calculation of spreader and receiver indexes required the local normalized in-degree and out-degree centralities, incoming and outgoing neighborhood zone-entropy and coreness-entropy. These six node (subzone) characteristics were range between zero and one. Figure 6 shows the frequency distribution of these six node characteristics in weekday (a-f) and in weekend (g-l). The node characteristics in the first row were used to calculate the spreader index for each node in the weekday; the second row was used to calculate receiver index in weekday; third row was used to calculate the weekend spreader index; forth row for weekend receiver index. 
 
 <img src="figures/fig6-density_and_diversity.png" style="zoom:50%;" />
 
-Figure 6. The frequency distributions of the six variables for the two datasets: (a-f) weekday and (g-l) weekend. (a, g) showed the local weighted out-degree, (b, h) showed the zone-entropy of the outgoing neighbors, (c, i) showed the outgoing-coreness-entropy of the outgoing neighbors; the three variable were used to calculate the spreader index. (d, j) showed the local weighted in-degree, (e, k) showed the zone-entropy of the incoming neighbors, (f, l) showed the incoming-coreness-entropy of the incoming neighbors; the three variables were used to calculate the receiver index. 
+Figure 6. The frequency distributions of the six node characteristics for the two datasets: (a-f) weekday and (g-l) weekend. (a, g) showed the local weighted out-degree, (b, h) showed the zone-entropy of the outgoing neighbors (outgoing N.), (c, i) showed the outgoing-coreness-entropy of the outgoing neighbors; the three variable were used to calculate the spreader index. (d, j) showed the local weighted in-degree, (e, k) showed the zone-entropy of the incoming neighbors (incoming N.), (f, l) showed the incoming-coreness-entropy of the incoming neighbors; the three variables were used to calculate the weekend receiver index. 
 
-
+The distribution for the spreader index and receiver index of each subzone in weekday and weekend were shown in Figure 7. All the four distributions showed bell shape pattern indicating normal distribution, with a mean at about 0.248 to 0.252, and the two standard deviation larger than mean about 0.507 to 0.525. The subzones that lay above the $mean+2sd$ threshold were identified as super-spreader or super-receiver, which number were about: (a) 10 weekday super-spreader, (b) 13 weekend super-spreader, (c) 11 weekday super-receiver, and (d) 13 weekend super-receiver. 
 
 <img src="figures/fig7-SR_index.png" style="zoom: 33%;" />
 
@@ -182,24 +182,38 @@ Figure 7. The frequency distribution of the spreader index (a, b) on the first r
 
 #### Part 5: Super-spreader and super-receiver
 
+The spatial distribution of the super-spreader (SS) and super-receiver (SR) were shown in Figure 8. There are 12 subzones and 14 subzones were respectively mapped in the weekday map and weekend map. Most of these areas were the major regional hub of commuting that had a large bus and train interchange. In both weekday and weekend maps, most of the super spreaders and receivers were overlapped, i.e. the eight (out of 12) subzones in weekday and ten (out of 14) subzones in weekend were identified as both the super spreader and the super receiver. This indicated that subzones with the highest spreader index would also had a higher receiver index, and vice versa. 
+
 <img src="figures/fig8-SR_result_map.png" style="zoom: 40%;" />
 
-Figure 8. The map of the super-spreader and super receiver for: (a) weekday, (b) weekend. The red patches indicated that the subzones were both super-spreader and super-receiver; the purple patches were the super-spreaders; the pink patches were the super receivers. 
+Figure 8. The map of the super spreader (SS) and super receiver (SR) for: (a) weekday, (b) weekend. The red patches indicated that the subzones were both super-spreader and super-receiver; the purple patches were the super-spreaders; the pink patches were the super receivers. The lists of subzones on the right were sorted alphabetically. 
 
+Seven subzones (Jelebu, Jurong West Central, Tampines East, Toa Payoh Central, Woodlands Regional Centre, Yishun Central, and Yishun West) were identified as both SS and SR (in red) in both weekday and weekend. Choa Chu Kang Central was identified as both SS and SR in weekday, and only SR in weekend. Jurong Gateway was identified as only SS in weekday, and both SS and SR in weekend. Khatib was identified as SR in both weekday and weekend. These ten subzones were overlapped between weekday and weekend. In weekday, there are two more SS were identified, which were Aljunied and Yishun South. In weekend, two more subzones were identified as both SS and SR (Bukit Batok Central and Clementi Central), one more subzone as SS (Ang Mo Kio Town Centre), and one more subzone as SR (Boulevard).  
 
+During weekday, most of the identified SS or SR area were the regional central area that contained a higher density of human activity. Tanpines East (d) and Aljunied (i) had a relatively large area. Although their residential population density were not among the highest population area in the country, they contained a major bus interchanges, multiple MRT stations, and several shopping malls. These places were the transportation hubs, e.g. Tampines East contained an interchange of two MRT lines,  whereas Aljunied contained several MRT stations and near to a MRT interchange. Tampines East remained in SS and SR in weekend, while Aljunied became less important of the role as spreaders and receivers. Choa Chu Kang Central (a), Jelebu (b),  Jurong West Central (c), and Woodlands Regional Centre (f) were SS and SR on weekday and weekend. These places had a smaller area but high residential population density. Jurong Gateway (j on weekday and d for weekend) was a small subzone with a low amount of population, but it was a SS on weekday and both SS and SR on weekend. This may because it contained the Jurong East MRT station, a large bus interchange, and several shopping malls, which made it a core of daily activity with large intensity of population interactions. 
 
 ## Discussions and conclusion
 
 *main contribution of this study*
 
-This study used 
+The concept of super-spreader was studied in social network field to identify the most influential person or node within a social network. This person could be a opinion leader within the groups of people. On the other hand, super-spreader was also used in epidemiology study to identify the potential super-spreader of diseases within a social group. This study intended to apply the super-spreader concept to spatial interaction networks, to identify the spatial super spreaders, which are the places that had the most influential power in terms of spreading diseases, and also reverse the idea to find the most vulnerable places, namely spatial super-receiver. 
 
-*limitations*
+The results showed that most of the SS are also SR. This is reasonable because in a daily commuting network, the number of people who are leaving from a place is usually proportional to the number of people who are going to the place, i.e. the larger the outgoing flow, the larger the incoming flow. Therefore, the places with large amount of flows had higher potential to be SS and SR, and this was captured by including the weighted in-degree or out-degree in the calculation. 
+
+Beside the local incoming and outgoing flow, this study also considered two neighborhood diversity of network characteristics: the zone-entropy and coreness entropy. The zone-entropy was to measure if the outgoing flows were moving to more zones within the country. If the outgoing flows from a place are moving to places in only one zone, this place can only affect one of the zone among all the zones in the country, thus its influential power is relatively weak; if the flows were moving to places of all zones across the country, its influential power is stronger. On the other hand, coreness entropy captures the diversity of flows to or from core or periphery area. If the flows were all moving to one of the periphery or core, its influential power was limited to the type of area; if the flows were divided to both core and periphery areas, this indicated that whenever an outbreak happens at this place, it could quickly affect both core and periphery areas. These two diversity measurements were used in the calculation framework for differentiating the places with high density of flows into strong influential and less influential places. 
+
+This study provided several list of subzones which had stronger capability to spread diseases, and subzones which were more vulnerable in terms of being a receiver. The lists were revealed as these were the results of the commuting movements. The places with high population activity in these area, such as transportation hubs or community hubs, might be more important for the resource allocation and disease monitoring for the prevention and intervention purpose. 
+
+
+
+*Limitations*
 
 1. This study covered only the public transportation commuters, specifically, only bus and train riderships were included. Other ways of transportation, including the private or hired automobiles (cars, motorcycles, shuttle buses or vans), and active transportation (by walking, bicycles, skateboards, scooters, etc.) were not included. 
 2. Cross-border flows were not included. Many workers in Singapore come from Malaysia and commute in a daily basis. There are some bus services connecting stations in Johor Bahru, Malaysia and various places in Singapore (Woodlands, Jurong East etc.). The in/out flows of these places in Singapore would be underestimated. 
-3. Some of the subzones have no bus stops and train stations currently. These places were ignored in this study as these places were only reachable using other types of transportation, and we do not have the data for privates automobiles and active transportation data. 
-4. The dynamic through a day was ignored. This study aggregated all hours data together to reveal the daily basis commuting flow network pattern. The within day dynamic could be different and the super-spreader and super-receiver could be different. The dynamic of spreader and receiver indexes could be done in a future study. 
+3. Some of the subzones currently have no bus stops and train stations. These places were ignored in this study as these places were only reachable using other types of transportation, and we do not have the data for privates automobiles and active transportation data. 
+4. Inter-mode trip transfer and bus transfer were not considered in the datasets. The trip transfer between MRT lines were captured from the tap-in and tap-out records, i.e. passengers exchange lines within train stations. But the OD data for buses only records the direct flow between bus stops, i.e. the records present only the tap-in and tap-out a bus information, the records of the exchange of bus services were not shown in the data. On the other hand, the data about changing from bus to train and train to bus were also unavailable. Therefore, we can only capture the direct bus service and this would limits the movement of travelers to the existence of direct bus services or train services. 
+5. The dynamic through a day was ignored. This study aggregated all hours data together to reveal the daily basis commuting flow network pattern. The within day dynamic could be different and the super-spreader and super-receiver could be different. The dynamic of spreader and receiver indexes could be done in a future study. 
+6. The calculation focused only on the direct linked relationship. Network transition effect was not considered in the framework. In simple words, only the zone and type of neighborhoods, and the local flow intensity were considered in the calculation; the capability of neighborhoods to spread diseases was not included in this study.  
 
 
 
