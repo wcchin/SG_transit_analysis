@@ -49,13 +49,7 @@ The calculation flow of the spreader and receiver indexes is shown in Figure 2. 
 
 <img src="figures/fig2-calculation_flowchart.png" style="zoom:90%;" />
 
-Figure 2. The calculation flow chart of the spreader and receiver index.
-
-#### Step 1: Degree centralities
-
-The degree centralities we used in this study include the non-weighted and weighted for both in and out degrees. The non-weighted and weighted versions of degree centralities present different concepts in network characteristics. The non-weighted in-degree and out-degree are the number of link that is pointed to and from a subzone, respectively. These non-weighted degree centralities measure the number of relationships a subzone has. The weighted in-degree and out-degree are the summation of incoming flows and the summation of outgoing flows of a subzone, respectively. This weighted version of degree centralities indicate the total strength of a node in terms of gathering flows or spreading flows, but it do not differentiate the number of links. 
-
-In this study, the weighted degree centralities were used to represent the density of nodes for the calculation of spreader and receiver indexes. The weighted degree centralities were scaled to the range between 0 and 1 for the calculation. On the other hand, both non-weighted and weighted degree centralities were used in the weighted k-shell decomposition analysis in step 3. 
+<img src="figures/fig9-SR_result_map_weekend.png" style="zoom:50%;" /> 
 
 
 
@@ -168,13 +162,13 @@ Figure 5. The coreness of for (a) weekday flow data and (b) weekend flow data. R
 
 The calculation of spreader and receiver indexes required the local normalized in-degree and out-degree centralities, incoming and outgoing neighborhood zone-entropy and coreness-entropy. These six node (subzone) characteristics were range between zero and one. Figure 6 shows the frequency distribution of these six node characteristics in weekday (a-f) and in weekend (g-l). The node characteristics in the first row were used to calculate the spreader index for each node in the weekday; the second row was used to calculate receiver index in weekday; third row was used to calculate the weekend spreader index; forth row for weekend receiver index. 
 
-<img src="figures/fig6-density_and_diversity.png" style="zoom:50%;" />
+<img src="figures/fig6-old-density_and_diversity.png" style="zoom:50%;" />
 
 Figure 6. The frequency distributions of the six node characteristics for the two datasets: (a-f) weekday and (g-l) weekend. (a, g) showed the local weighted out-degree, (b, h) showed the zone-entropy of the outgoing neighbors (outgoing N.), (c, i) showed the outgoing-coreness-entropy of the outgoing neighbors; the three variable were used to calculate the spreader index. (d, j) showed the local weighted in-degree, (e, k) showed the zone-entropy of the incoming neighbors (incoming N.), (f, l) showed the incoming-coreness-entropy of the incoming neighbors; the three variables were used to calculate the weekend receiver index. 
 
 The distribution for the spreader index and receiver index of each subzone in weekday and weekend were shown in Figure 7. All the four distributions showed bell shape pattern indicating normal distribution, with a mean at about 0.248 to 0.252, and the two standard deviation larger than mean about 0.507 to 0.525. The subzones that lay above the $mean+2sd$ threshold were identified as super-spreader or super-receiver, which number were about: (a) 10 weekday super-spreader, (b) 13 weekend super-spreader, (c) 11 weekday super-receiver, and (d) 13 weekend super-receiver. 
 
-<img src="figures/fig7-SR_index.png" style="zoom: 33%;" />
+<img src="figures/fig7-old-SR_index.png" style="zoom: 33%;" />
 
 Figure 7. The frequency distribution of the spreader index (a, b) on the first row, and receiver index (c, d) on the second row, for the two datasets: first column (a, c) for weekday, and second column (b, d) for weekend. The vertical solid lines indicated the mean of the distributions, and the vertical dashed lines showed the two times of standard deviation larger than the mean of the distributions. The subzones lie outside the dashed lines are the subzones with the highest spreader or receiver indexes, which were identified as the super-spreaders and super-receivers. 
 
@@ -184,7 +178,7 @@ Figure 7. The frequency distribution of the spreader index (a, b) on the first r
 
 The spatial distribution of the super-spreader (SS) and super-receiver (SR) were shown in Figure 8. There are 12 subzones and 14 subzones were respectively mapped in the weekday map and weekend map. Most of these areas were the major regional hub of commuting that had a large bus and train interchange. In both weekday and weekend maps, most of the super spreaders and receivers were overlapped, i.e. the eight (out of 12) subzones in weekday and ten (out of 14) subzones in weekend were identified as both the super spreader and the super receiver. This indicated that subzones with the highest spreader index would also had a higher receiver index, and vice versa. 
 
-<img src="figures/fig8-SR_result_map.png" style="zoom: 40%;" />
+<img src="figures/fig8-old-SR_result_map.png" style="zoom: 40%;" />
 
 Figure 8. The map of the super spreader (SS) and super receiver (SR) for: (a) weekday, (b) weekend. The red patches indicated that the subzones were both super-spreader and super-receiver; the purple patches were the super-spreaders; the pink patches were the super receivers. The lists of subzones on the right were sorted alphabetically. 
 
