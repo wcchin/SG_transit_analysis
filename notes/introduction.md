@@ -15,7 +15,7 @@ Spatial network is a convenient tool to conceptualize the networked interactions
 
 
 % super-spreaders, which is a popular social network analysis topic, could provide some insights on revealing the places that were influential in the disease diffusion process and on uncovering the vulnerable places. 
-The identification of super-spreaders is a popular topic in social network studies. 
+The identification of super-spreaders is a popular topic in social network studies (REF Pastor2001 - latest). 
 
 
 
