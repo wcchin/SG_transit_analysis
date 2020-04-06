@@ -1,6 +1,6 @@
 =======================================================
-  Infomap v0.20.0 starts at [2020-02-26 16:19:15]
-  -> Input network: data/net_202001_weekend.net
+  Infomap v0.20.0 starts at [2020-04-03 11:47:15]
+  -> Input network: data/net_202001_weekendb.net
   -> Output path:   mapequation/
   -> Configuration: input-format = pajek
                     flow-network
@@ -9,39 +9,39 @@
   -> Use directed flow and 1st order Markov dynamics with unrecorded teleportation to links
 =======================================================
 (OpenMP 201511 detected, trying to parallelize the recursive part on 8 threads...)
-Parsing directed network from file 'data/net_202001_weekend.net'...  (Warning: All node weights zero, changing to one) done!
- ==> 303 nodes and 30043 links (with total weight 6.54846e+07).
+Parsing directed network from file 'data/net_202001_weekendb.net'...  (Warning: All node weights zero, changing to one) done!
+ ==> 303 nodes and 30043 links (with total weight 2.71704e+06).
 Calculating global flow... 
   -> Using unrecorded teleportation to links. 
-  -> PageRank calculation done in 120 iterations.
-Printing flow network to mapequation/net_202001_weekend.flow... done!
+  -> PageRank calculation done in 70 iterations.
+Printing flow network to mapequation/net_202001_weekendb.flow... done!
 Calculating one-level codelength... done!
-  -> One-level codelength: 7.522339181
+  -> One-level codelength: 7.331702591
 Calculating entropy rate... done!
-  -> Entropy rate: 4.342636016
-Initiating done in 0.151095s
+  -> Entropy rate: 5.14851263
+Initiating done in 0.157959s
 
-Attempt 1/1 at [2020-02-26 16:19:15]
-Initiated to codelength 7.52234 + 1.99975 = 9.522089468 in 303 modules.
-Two-level compression: 17% 0.19% 4.8% to 11 modules with codelength 6.346891757
+Attempt 1/1 at [2020-04-03 11:47:15]
+Initiated to codelength 7.3317 + 1.99987 = 9.33157584 in 303 modules.
+Two-level compression: 6.5% 0.27% 9.3% to 8 modules with codelength 6.97949544
 
 Building output tree... writing .tree... done!
 
 
-Finished clustering 'net_202001_weekend' in 1 trial with:
+Finished clustering 'net_202001_weekendb' in 1 trial with:
 Iteration                 Seconds          Modules       Perplexity         maxDepth    weightedDepth       Codelength 
-1                     0.087953000               11      8.186190038                2      2.000000000      6.346891757 *
+1                     0.053898000                8      3.816541405                2      2.000000000      6.979495440 *
 
 
 Best end modular solution in 2 levels:
-Per level number of modules:         [         11,           0] (sum: 11)
+Per level number of modules:         [          8,           0] (sum: 8)
 Per level number of leaf nodes:      [          0,         303] (sum: 303)
-Per level average child degree:      [         11,     27.5455] (average: 26.9658)
-Per level codelength for modules:    [0.888898972, 0.000000000] (sum: 0.888898972)
-Per level codelength for leaf nodes: [0.000000000, 5.457992785] (sum: 5.457992785)
-Per level codelength total:          [0.888898972, 5.457992785] (sum: 6.346891757)
+Per level average child degree:      [          8,      37.875] (average: 37.1065)
+Per level codelength for modules:    [0.696542538, 0.000000000] (sum: 0.696542538)
+Per level codelength for leaf nodes: [0.000000000, 6.282952902] (sum: 6.282952902)
+Per level codelength total:          [0.696542538, 6.282952902] (sum: 6.979495440)
 
 ===================================================
-  Infomap ends at [2020-02-26 16:19:15]
-  Elapsed time: 0s (0.244483000s)
+  Infomap ends at [2020-04-03 11:47:15]
+  Elapsed time: 0s (0.238324000s)
 ===================================================
